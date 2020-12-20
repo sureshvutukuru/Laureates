@@ -29,10 +29,6 @@ class ViewController: UIViewController {
         self.pickerView.toolbarDelegate = self
         loadYearsDataInPicker()
         getLaureatesData()
-        
-        yearTextField.text = "1900"
-        latitudeTextField.text = "40.8075355"
-        longitudeTextField.text = "-73.9625727"
     }
     
     @IBAction func onTappingSubmit(_ sender: Any) {
@@ -76,7 +72,7 @@ class ViewController: UIViewController {
     private func showResults() {
         let results = self.laureates.filter({$0.location.lat == Double(latitudeTextField.text!) && $0.location.lng == Double(longitudeTextField.text!) && $0.year >= yearTextField.text!})
         if results.count == 0 {
-            showAlert(withMessage: "No results found. Try again!")
+            showAlert(withMessage: "No records found. Try again!")
             return
         }
         let resultsView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultsTableViewController") as! ResultsTableViewController
